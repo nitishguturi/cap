@@ -1,0 +1,118 @@
+<app-header></app-header>
+
+
+<table *ngIf="productList" class="main">
+  <tr *ngFor="let i of rowIndexArray">
+    <td *ngIf="productList[3*i]" class="col-auto">
+
+      <mat-card class="mat-elevation-z4 example-card">
+        <mat-card-header>
+
+          <mat-card-title>{{productList[3*i].name}}</mat-card-title>
+          <mat-card-subtitle>{{productList[3*i].category}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="productList[3*i].imageUrl" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p><span style="font-weight: bolder;">Description : </span>{{ productList[3*i].description }}</p>
+          <p>
+            <span style="font-weight: bolder;">Date : </span>{{productList[3*i].avaldate}}</p>
+          <p>  <span style="font-weight: bolder;">Location : </span>{{productList[3*i].location}}</p>
+          <p><span style="font-weight: bolder;">Contact: </span>{{ productList[3*i].contact }}</p>
+          <p><span style="font-weight: bolder;">Price: </span>{{ productList[3*i].price }}</p>
+          <p><span style="font-weight: bolder;">Quantity: </span>{{ productList[3*i].quantity }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary">LIKE</button>
+          <button mat-raised-button color="primary">SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+
+    </td>
+
+    <td *ngIf="productList[3*i+1]" class="col-auto">
+
+      <mat-card class="mat-elevation-z4 example-card">
+        <mat-card-header>
+
+          <mat-card-title>{{productList[3*i+1].name}}</mat-card-title>
+          <mat-card-subtitle>{{productList[3*i+1].category}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="productList[3*i+1].imageUrl" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p><span style="font-weight: bolder;">Description : </span>{{ productList[3*i+1].description }}</p>
+          <p>
+            <span style="font-weight: bolder;">Date : </span>{{productList[3*i+1].avaldate}}</p>
+          <p>  <span style="font-weight: bolder;">Location : </span>{{productList[3*i+1].location}}</p>
+          <p><span style="font-weight: bolder;">Contact: </span>{{ productList[3*i+1].contact }}</p>
+          <p><span style="font-weight: bolder;">Price: </span>{{ productList[3*i+1].price }}</p>
+          <p><span style="font-weight: bolder;">Quantity: </span>{{ productList[3*i+1].quantity }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary">LIKE</button>
+          <button mat-raised-button color="primary">SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+
+    </td>
+
+
+    <td *ngIf="productList[3*i+2]" class="col-auto">
+
+      <mat-card class="mat-elevation-z4 example-card">
+        <mat-card-header>
+
+          <mat-card-title>{{productList[3*i+2].name}}</mat-card-title>
+          <mat-card-subtitle>{{productList[3*i+2].category}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="productList[3*i+2].imageUrl" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p><span style="font-weight: bolder;">Description : </span>{{ productList[3*i+2].description }}</p>
+          <p>
+            <span style="font-weight: bolder;">Date : </span>{{productList[3*i+2].avaldate}}</p>
+          <p>  <span style="font-weight: bolder;">Location : </span>{{productList[3*i+2].location}}</p>
+          <p><span style="font-weight: bolder;">Contact: </span>{{ productList[3*i+2].contact }}</p>
+          <p><span style="font-weight: bolder;">Price: </span>{{ productList[3*i+2].price }}</p>
+          <p><span style="font-weight: bolder;">Quantity: </span>{{ productList[3*i+2].quantity }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary">LIKE</button>
+          <button mat-raised-button color="primary">SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+
+    </td>
+
+
+
+
+  </tr>
+</table>
+
+
+
+
+<!--
+<div class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
+  <div fxFlex.md="25%" fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" fxFlex.lg="25%" *ngFor="let product of productList">
+    <mat-card class="mat-elevation-z4" >
+      <mat-card-header>
+        <mat-card-title>{{ product.name }}</mat-card-title>
+      </mat-card-header>
+      <img  mat-card-image [src]="product.imageUrl">
+      <mat-card-content>
+          <p><span style="font-weight: bolder;">Description : </span>{{ product.description }}</p>
+          <p>
+            <span style="font-weight: bolder;">Date : </span>{{product.avaldate}}</p>
+          <p>  <span style="font-weight: bolder;">Location : </span>{{product.location}}</p>
+          <p><span style="font-weight: bolder;">Contact: </span>{{ product.contact }}</p>
+
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+
+-->

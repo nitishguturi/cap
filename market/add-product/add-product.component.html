@@ -1,0 +1,285 @@
+<app-header></app-header>
+
+<!--
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <form #productForm="ngForm" (ngSubmit)="onCreateProduct(productForm)">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            required
+            ngModel
+            name="name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea
+            class="form-control"
+            id="description"
+            required
+            ngModel
+            name="description"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="contact">Phone Number</label>
+          <input
+            type="number"
+            class="form-control"
+            id="contact"
+            required
+            ngModel
+            name="contact"
+          />
+        </div>
+        <div class="form-group">
+          <label for="location">Location</label>
+          <input
+            type="text"
+            class="form-control"
+            id="location"
+            required
+            ngModel
+            name="location"
+          />
+        </div>
+        <div class="form-group">
+          <label for="avaldate">Available Date</label>
+          <input
+            type="date"
+            class="form-control"
+            id="avaldate"
+            required
+            ngModel
+            name="avaldate"
+          />
+        </div>
+
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!productForm.valid"
+        >
+          Add Product
+        </button>
+      </form>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <p *ngIf="loadedProducts.length < 1 && !isFetching">No products available!</p>
+      <ul class="list-group" *ngIf="loadedProducts.length >= 1 && !isFetching">
+        <li class="list-group-item" *ngFor="let product of loadedProducts">
+          <h3>{{ product.name }}</h3>
+          <p>{{ product.description }}</p>
+          <p>{{ product.avaldate }}</p>
+          <p>{{ product.contact }}</p>
+          <p>{{ product.location }}</p>
+        </li>
+      </ul>
+      <p *ngIf="isFetching && !error">Loading...</p>
+      <div class="alert alert-danger" *ngIf="error">
+        <h1>An Error Occurred!</h1>
+        <p>{{ error }}</p>
+        <button class="btn btn-danger" (click)="onHandleError()">Okay</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+-->
+
+
+
+
+
+  <div class="col-xs-12 col-md-4 col-md-offset-3" class='center'>
+<div class="card" >
+  <div class="card-body">
+    <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
+      <div class="text-center">
+        <img [src]="imgSrc" width="350px" height="250px" (click)="fileUploader.click()">
+      </div>
+      <div class="form-group">
+
+        <input hidden type="file" accept="image/*" class="form-control" #fileUploader formControlName="imageUrl"
+          (change)="showPreview($event)">
+        <div class="text-danger" *ngIf="isSubmitted && formControls.imageUrl.errors?.required">This field is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <input class="form-control" formControlName="name" placeholder="Name">
+        <div class="text-danger" *ngIf="isSubmitted && formControls.name.errors?.required">This field is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <textarea class="form-control" formControlName="description" placeholder="Description"> </textarea>
+        <div class="text-danger" *ngIf="isSubmitted && formControls.description.errors?.required">This field is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <select formControlName="category" class="form-control">
+          <option value="Vegetables">Vegetables</option>
+          <option value="Fruits">Fruits</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <input type="date" class="form-control" formControlName="avaldate" placeholder="Available Date">
+        <div class="text-danger" *ngIf="isSubmitted && formControls.avaldate.errors?.required">This field is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="number" class="form-control" formControlName="contact" placeholder="Phone Number">
+        <div class="text-danger" *ngIf="isSubmitted && formControls.contact.errors?.required">This field is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <textarea class="form-control" formControlName="location" placeholder="Location"> </textarea>
+        <div class="text-danger" *ngIf="isSubmitted && formControls.location.errors?.required">This field is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="text" class="form-control" formControlName="quantity" placeholder="Quantity">
+        <div class="text-danger" *ngIf="isSubmitted && formControls.quantity.errors?.required">This field is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="number" class="form-control" formControlName="price" placeholder="Price">
+        <div class="text-danger" *ngIf="isSubmitted && formControls.price.errors?.required">This field is required.
+        </div>
+      </div>
+
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <a routerLink="/market" class="btn btn-primary btn-block float-right">Go To Market</a>
+        </div>
+        <div class="form-group col-md-6">
+          <button type="submit" class="btn btn-success btn-block float-right">Add Product</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+
+
+<hr>
+
+<h1 *ngIf="user && productList.length>0" style="text-align: center;">My Products</h1>
+<h1 *ngIf="user==null || productList.length===0" style="text-align: center;">No Products</h1>
+
+
+
+
+
+  <table *ngIf="productList" class="main">
+    <tr *ngFor="let i of rowIndexArray">
+      <td *ngIf="productList[3*i]">
+
+        <mat-card class="mat-elevation-z4 example-card">
+          <mat-card-header>
+
+            <mat-card-title>{{productList[3*i].name}}</mat-card-title>
+            <mat-card-subtitle>{{productList[3*i].category}}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image [src]="productList[3*i].imageUrl" alt="Photo of a Shiba Inu">
+          <mat-card-content>
+            <p><span style="font-weight: bolder;">Description : </span>{{ productList[3*i].description }}</p>
+            <p>
+              <span style="font-weight: bolder;">Date : </span>{{productList[3*i].avaldate}}</p>
+            <p>  <span style="font-weight: bolder;">Location : </span>{{productList[3*i].location}}</p>
+            <p><span style="font-weight: bolder;">Contact: </span>{{ productList[3*i].contact }}</p>
+            <p><span style="font-weight: bolder;">Price: </span>{{ productList[3*i].price }}</p>
+          <p><span style="font-weight: bolder;">Quantity: </span>{{ productList[3*i].quantity }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button type="button" (click)="deleteProduct(productList[3*i].key)" mat-raised-button color="warn">DELETE</button>
+          </mat-card-actions>
+        </mat-card>
+
+      </td>
+
+      <td *ngIf="productList[3*i+1]">
+
+        <mat-card class="mat-elevation-z4 example-card">
+          <mat-card-header>
+
+            <mat-card-title>{{productList[3*i+1].name}}</mat-card-title>
+            <mat-card-subtitle>{{productList[3*i+1].category}}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image [src]="productList[3*i+1].imageUrl" alt="Photo of a Shiba Inu">
+          <mat-card-content>
+            <p><span style="font-weight: bolder;">Description : </span>{{ productList[3*i+1].description }}</p>
+            <p>
+              <span style="font-weight: bolder;">Date : </span>{{productList[3*i+1].avaldate}}</p>
+            <p>  <span style="font-weight: bolder;">Location : </span>{{productList[3*i+1].location}}</p>
+            <p><span style="font-weight: bolder;">Contact: </span>{{ productList[3*i+1].contact }}</p>
+            <p><span style="font-weight: bolder;">Price: </span>{{ productList[3*i+1].price }}</p>
+          <p><span style="font-weight: bolder;">Quantity: </span>{{ productList[3*i+1].quantity }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button type="button" (click)="deleteProduct(productList[3*i+1].key)" mat-raised-button color="warn">DELETE</button>
+          </mat-card-actions>
+        </mat-card>
+
+      </td>
+
+
+      <td *ngIf="productList[3*i+2]">
+
+        <mat-card class="mat-elevation-z4 example-card">
+          <mat-card-header>
+
+            <mat-card-title>{{productList[3*i+2].name}}</mat-card-title>
+            <mat-card-subtitle>{{productList[3*i+2].category}}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image [src]="productList[3*i+2].imageUrl" alt="Photo of a Shiba Inu">
+          <mat-card-content>
+            <p><span style="font-weight: bolder;">Description : </span>{{ productList[3*i+2].description }}</p>
+            <p>
+              <span style="font-weight: bolder;">Date : </span>{{productList[3*i+2].avaldate}}</p>
+            <p>  <span style="font-weight: bolder;">Location : </span>{{productList[3*i+2].location}}</p>
+            <p><span style="font-weight: bolder;">Contact: </span>{{ productList[3*i+2].contact }}</p>
+            <p><span style="font-weight: bolder;">Price: </span>{{ productList[3*i+2].price }}</p>
+          <p><span style="font-weight: bolder;">Quantity: </span>{{ productList[3*i+2].quantity }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button type="button" (click)="deleteProduct(productList[3*i+2].key)" mat-raised-button color="warn">DELETE</button>
+          </mat-card-actions>
+        </mat-card>
+
+      </td>
+
+
+
+
+    </tr>
+  </table>
+
+
+
+
+
+
